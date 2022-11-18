@@ -89,8 +89,6 @@ def render_image_batch(args, prompts, root):
                         else:
                             filename = f"{args.timestring}_{index:05}_{args.seed}.png"
                         image.save(os.path.join(args.outdir, filename))
-                    if args.display_samples:
-                        display.display(image)
                     index += 1
                 args.seed = next_seed(args)
 
@@ -101,8 +99,6 @@ def render_image_batch(args, prompts, root):
             filename = f"{args.timestring}_{iprompt:05d}_grid_{args.seed}.png"
             grid_image = Image.fromarray(grid.astype(np.uint8))
             grid_image.save(os.path.join(args.outdir, filename))
-            display.clear_output(wait=True)            
-            display.display(grid_image)
 
 
 def render_animation(args, anim_args, animation_prompts, root):
@@ -323,9 +319,6 @@ def render_animation(args, anim_args, animation_prompts, root):
                 depth_model.save(os.path.join(args.outdir, f"{args.timestring}_depth_{frame_idx:05}.png"), depth)
             frame_idx += 1
 
-        display.clear_output(wait=True)
-        display.display(image)
-
         args.seed = next_seed(args)
 
 def render_input_video(args, anim_args, animation_prompts, root):
@@ -385,12 +378,8 @@ def render_interpolation(args, anim_args, animation_prompts, root):
         c, image = results[0], results[1]
         prompts_c_s.append(c) 
       
-        # display.clear_output(wait=True)
-        display.display(image)
-      
         args.seed = next_seed(args)
 
-    display.clear_output(wait=True)
     print(f"Interpolation start...")
 
     frame_idx = 0
@@ -416,9 +405,6 @@ def render_interpolation(args, anim_args, animation_prompts, root):
                 image.save(os.path.join(args.outdir, filename))
                 frame_idx += 1
 
-                display.clear_output(wait=True)
-                display.display(image)
-
                 args.seed = next_seed(args)
 
     else:
@@ -437,9 +423,6 @@ def render_interpolation(args, anim_args, animation_prompts, root):
                 image.save(os.path.join(args.outdir, filename))
                 frame_idx += 1
 
-                display.clear_output(wait=True)
-                display.display(image)
-
                 args.seed = next_seed(args)
 
     # generate the last prompt
@@ -449,8 +432,6 @@ def render_interpolation(args, anim_args, animation_prompts, root):
     filename = f"{args.timestring}_{frame_idx:05}.png"
     image.save(os.path.join(args.outdir, filename))
 
-    display.clear_output(wait=True)
-    display.display(image)
     args.seed = next_seed(args)
 
     #clear init_c

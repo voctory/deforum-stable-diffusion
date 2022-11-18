@@ -222,5 +222,4 @@ class CFGDenoiserWithGrad(CompVisDenoiser):
         images = images.double().cpu().add(1).div(2).clamp(0, 1)
         images = torch.tensor(images.numpy())
         grid = make_grid(images, 4).cpu()
-        display.display(to_pil_image(grid))
         return

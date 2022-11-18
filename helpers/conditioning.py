@@ -131,7 +131,6 @@ def get_color_palette(root, n_colors, target, verbose=False):
         images = images.double().cpu().add(1).div(2).clamp(0, 1)
         images = torch.tensor(np.array(images))
         grid = make_grid(images, 8).cpu()
-        display.display(TF.to_pil_image(grid))
         return
 
     # Create color palette

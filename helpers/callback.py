@@ -60,8 +60,6 @@ class SamplerCallback(object):
         images = images.double().cpu().add(1).div(2).clamp(0, 1)
         images = torch.tensor(np.array(images))
         grid = make_grid(images, 4).cpu()
-        display.clear_output(wait=True)
-        display.display(TF.to_pil_image(grid))
         return
 
     def view_sample_step(self, latents, path_name_modifier=''):
