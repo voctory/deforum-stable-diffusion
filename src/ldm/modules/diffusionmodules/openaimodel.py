@@ -462,6 +462,7 @@ class UNetModel(nn.Module):
         resblock_updown=False,
         use_new_attention_order=False,
         use_spatial_transformer=False,    # custom transformer support
+        use_linear_in_transformer=False,
         transformer_depth=1,              # custom transformer support
         context_dim=None,                 # custom transformer support
         n_embed=None,                     # custom support for prediction of discrete ids into codebook of first stage vq model
